@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours Complet — L'IA dans l'Éducation et la Formation | Master TEIP</title>
+    <meta name="description" content="Cours complet sur l'Intelligence Artificielle dans l'Éducation et la Formation — Révision Master TEIP, Examen Final. Chapitres, focus examen, études de cas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════
+           DESIGN SYSTEM — TOKENS & VARIABLES
+           ═══════════════════════════════════════════════════ */
+        :root {
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Light theme */
+            --bg-primary: #f8f9fc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f0f2f8;
+            --bg-card: #ffffff;
+            --bg-sidebar: #ffffff;
+            --text-primary: #1a1d2e;
+            --text-secondary: #4a5068;
+            --text-tertiary: #6b7194;
+            --border-color: #e2e5f0;
+            --border-light: #eef0f6;
+
+            /* Accent colors */
+            --accent-primary: #6366f1;
+            --accent-primary-light: #818cf8;
+            --accent-primary-bg: rgba(99, 102, 241, 0.08);
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
+            --accent-gradient-soft: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.12));
+
+            /* Semantic colors */
+            --focus-exam-bg: linear-gradient(135deg, #fef3c7, #fde68a);
+            --focus-exam-border: #f59e0b;
+            --focus-exam-text: #92400e;
+            --focus-exam-icon: #d97706;
+
+            --success-bg: rgba(16, 185, 129, 0.08);
+            --success-border: #10b981;
+            --success-text: #065f46;
+
+            --danger-bg: rgba(239, 68, 68, 0.08);
+            --danger-border: #ef4444;
+            --danger-text: #991b1b;
+
+            --info-bg: rgba(59, 130, 246, 0.08);
+            --info-border: #3b82f6;
+            --info-text: #1e40af;
+
+            --warning-bg: rgba(245, 158, 11, 0.08);
+            --warning-border: #f59e0b;
+            --warning-text: #92400e;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.1);
+            --shadow-glow: 0 0 40px rgba(99,102,241,0.15);
+
+            /* Spacing */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+
+            /* Transitions */
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f1117;
+            --bg-secondary: #181b26;
+            --bg-tertiary: #1e2235;
+            --bg-card: #1e2235;
+            --bg-sidebar: #181b26;
+            --text-primary: #e8eaf2;
+            --text-secondary: #a0a6c0;
+            --text-tertiary: #6b7194;
+            --border-color: #2a2e42;
+            --border-light: #232740;
+
+            --accent-primary-bg: rgba(99, 102, 241, 0.15);
+
+            --focus-exam-bg: linear-gradient(135deg, rgba(254,243,199,0.1), rgba(253,230,138,0.08));
+            --focus-exam-border: #f59e0b;
+            --focus-exam-text: #fde68a;
+            --focus-exam-icon: #fbbf24;
+
+            --success-bg: rgba(16, 185, 129, 0.12);
+            --success-text: #6ee7b7;
+            --danger-bg: rgba(239, 68, 68, 0.12);
+            --danger-text: #fca5a5;
+            --info-bg: rgba(59, 130, 246, 0.12);
+            --info-text: #93c5fd;
+            --warning-bg: rgba(245, 158, 11, 0.12);
+            --warning-text: #fde68a;
+
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.4);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 40px rgba(99,102,241,0.25);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           RESET & BASE STYLES
+           ═══════════════════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            transition: background var(--transition-normal), color var(--transition-normal);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           HEADER / HERO
+           ═══════════════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            padding: 100px 40px 80px;
+            text-align: center;
+            background: var(--accent-gradient);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--bg-primary);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            animation: fadeInDown 0.6s ease-out 0.1s both;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-weight: 400;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════════ */
+        .layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 0;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 1024px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SIDEBAR / TABLE OF CONTENTS
+           ═══════════════════════════════════════════════════ */
+        .sidebar {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            padding: 32px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+            transition: background var(--transition-normal), border-color var(--transition-normal);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 320px;
+                z-index: 1000;
+                box-shadow: var(--shadow-xl);
+            }
+
+            .sidebar.open {
+                display: block;
+            }
+        }
+
+        .sidebar-title {
+            padding: 0 24px 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-tertiary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-chapter {
+            margin-bottom: 4px;
+        }
+
+        .toc-chapter-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+
+        .toc-chapter-title:hover {
+            background: var(--accent-primary-bg);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+        }
+
+        .toc-chapter-title.active {
+            background: var(--accent-primary-bg);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+        }
+
+        .toc-chapter-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--accent-gradient);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .toc-sub-list {
+            list-style: none;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height var(--transition-normal);
+        }
+
+        .toc-chapter.expanded .toc-sub-list {
+            max-height: 500px;
+        }
+
+        .toc-sub-item a {
+            display: block;
+            padding: 7px 24px 7px 60px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+
+        .toc-sub-item a:hover,
+        .toc-sub-item a.active {
+            color: var(--accent-primary);
+            background: var(--accent-primary-bg);
+            border-left-color: var(--accent-primary-light);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           MAIN CONTENT
+           ═══════════════════════════════════════════════════ */
+        .main-content {
+            padding: 48px 60px 100px;
+            max-width: 900px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 32px 20px 80px;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CHAPTER SECTIONS
+           ═══════════════════════════════════════════════════ */
+        .chapter-section {
+            margin-bottom: 64px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .chapter-header {
+            margin-bottom: 36px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .chapter-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--accent-gradient);
+            color: #fff;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .chapter-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .sub-section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 40px 0 20px;
+            padding-left: 16px;
+            border-left: 4px solid var(--accent-primary);
+            line-height: 1.3;
+        }
+
+        .section-h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 28px 0 12px;
+        }
+
+        .section-h3::before {
+            content: '▸ ';
+            color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CONTENT ELEMENTS
+           ═══════════════════════════════════════════════════ */
+        .content p {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content ul, .content ol {
+            margin: 12px 0 20px 24px;
+            color: var(--text-secondary);
+        }
+
+        .content li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+            padding-left: 4px;
+        }
+
+        .content li::marker {
+            color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           FOCUS EXAMEN BLOCKS
+           ═══════════════════════════════════════════════════ */
+        .focus-exam {
+            position: relative;
+            background: var(--focus-exam-bg);
+            border: 2px solid var(--focus-exam-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 28px 28px 28px;
+            margin: 32px 0;
+            overflow: hidden;
+        }
+
+        .focus-exam::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--focus-exam-border);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .focus-exam-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .focus-exam-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--focus-exam-border);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        .focus-exam-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--focus-exam-icon);
+        }
+
+        .focus-exam-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--focus-exam-text);
+            margin-bottom: 14px;
+        }
+
+        .focus-exam p,
+        .focus-exam li {
+            color: var(--focus-exam-text);
+        }
+
+        .focus-exam strong {
+            color: var(--focus-exam-text);
+        }
+
+        .focus-exam ul, .focus-exam ol {
+            margin: 10px 0 16px 20px;
+        }
+
+        .focus-exam li {
+            margin-bottom: 6px;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           INFO CARDS / CALLOUTS
+           ═══════════════════════════════════════════════════ */
+        .callout {
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .callout-success {
+            background: var(--success-bg);
+            border-color: var(--success-border);
+            color: var(--success-text);
+        }
+
+        .callout-danger {
+            background: var(--danger-bg);
+            border-color: var(--danger-border);
+            color: var(--danger-text);
+        }
+
+        .callout-info {
+            background: var(--info-bg);
+            border-color: var(--info-border);
+            color: var(--info-text);
+        }
+
+        .callout-warning {
+            background: var(--warning-bg);
+            border-color: var(--warning-border);
+            color: var(--warning-text);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout p, .callout li {
+            color: inherit;
+            font-size: 0.92rem;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CONCEPT CARDS
+           ═══════════════════════════════════════════════════ */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .concept-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: all var(--transition-normal);
+        }
+
+        .concept-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary-light);
+        }
+
+        .concept-card-icon {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .concept-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .concept-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           TABLES
+           ═══════════════════════════════════════════════════ */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .styled-table thead {
+            background: var(--accent-gradient);
+        }
+
+        .styled-table thead th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .styled-table tbody tr {
+            background: var(--bg-card);
+            transition: background var(--transition-fast);
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background: var(--bg-tertiary);
+        }
+
+        .styled-table tbody tr:hover {
+            background: var(--accent-primary-bg);
+        }
+
+        .styled-table tbody td {
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .styled-table tbody td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CASE STUDY
+           ═══════════════════════════════════════════════════ */
+        .case-study {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .case-study-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .case-study-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .case-study-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           KEY POINTS
+           ═══════════════════════════════════════════════════ */
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .key-point:hover {
+            background: var(--accent-primary-bg);
+            transform: translateX(4px);
+        }
+
+        .key-point-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            border-radius: 8px;
+            background: var(--accent-gradient);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .key-point-text {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .key-point-text strong {
+            color: var(--text-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           PROMPT EXAMPLE BOX
+           ═══════════════════════════════════════════════════ */
+        .prompt-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 20px 0;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .prompt-box::before {
+            content: '💬 PROMPT';
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            padding: 2px 12px;
+            background: var(--accent-primary);
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           COMPARISON BOXES (Avantages / Limites)
+           ═══════════════════════════════════════════════════ */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 640px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-box {
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1px solid;
+        }
+
+        .comparison-box.pros {
+            background: var(--success-bg);
+            border-color: var(--success-border);
+        }
+
+        .comparison-box.cons {
+            background: var(--danger-bg);
+            border-color: var(--danger-border);
+        }
+
+        .comparison-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-box.pros h4 {
+            color: var(--success-text);
+        }
+
+        .comparison-box.cons h4 {
+            color: var(--danger-text);
+        }
+
+        .comparison-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .comparison-box li {
+            padding: 6px 0;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .comparison-box.pros li {
+            color: var(--success-text);
+        }
+
+        .comparison-box.cons li {
+            color: var(--danger-text);
+        }
+
+        .comparison-box.pros li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        .comparison-box.cons li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           FLOATING CONTROLS (Theme Toggle, Mobile Menu, Print)
+           ═══════════════════════════════════════════════════ */
+        .floating-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+
+        .floating-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-fast);
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: var(--accent-primary);
+            color: #fff;
+            border-color: var(--accent-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            backdrop-filter: blur(4px);
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           PROGRESS BAR
+           ═══════════════════════════════════════════════════ */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            z-index: 10000;
+            transition: width 0.1s linear;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CONCLUSION
+           ═══════════════════════════════════════════════════ */
+        .conclusion-section {
+            background: var(--accent-gradient-soft);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin-top: 48px;
+        }
+
+        .conclusion-section h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .conclusion-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        @media (max-width: 640px) {
+            .conclusion-pillars {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pillar-card {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pillar-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .pillar-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .pillar-text {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           EXAM REMINDER
+           ═══════════════════════════════════════════════════ */
+        .exam-reminder {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-lg);
+            color: #fff;
+            text-align: center;
+        }
+
+        .exam-reminder h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .exam-reminder p {
+            font-size: 0.92rem;
+            opacity: 0.9;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           INTRODUCTION SECTION
+           ═══════════════════════════════════════════════════ */
+        .intro-section {
+            margin-bottom: 48px;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .intro-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-question {
+            font-style: italic;
+            padding: 16px 20px;
+            background: var(--accent-primary-bg);
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--accent-primary);
+            margin-top: 16px;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           DESCRIPTIF PEDAGOGIQUE
+           ═══════════════════════════════════════════════════ */
+        .descriptif-block {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-primary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .descriptif-block h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 20px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .descriptif-block h4:first-child {
+            margin-top: 0;
+        }
+
+        .descriptif-top-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--accent-gradient);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════════ */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           PRINT STYLES
+           ═══════════════════════════════════════════════════ */
+        @media print {
+            .sidebar, .floating-controls, .progress-bar, .hero::after, .mobile-menu-btn, .sidebar-overlay {
+                display: none !important;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 40px 20px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .main-content {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .chapter-section {
+                page-break-inside: avoid;
+            }
+
+            .focus-exam {
+                page-break-inside: avoid;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body {
+                font-size: 11pt;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SCROLL TO TOP
+           ═══════════════════════════════════════════════════ */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+            z-index: 100;
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Floating Controls -->
+    <div class="floating-controls">
+        <button class="floating-btn mobile-menu-btn" id="mobileMenuBtn" title="Menu" aria-label="Ouvrir le menu">☰</button>
+        <button class="floating-btn" id="themeToggle" title="Changer le thème" aria-label="Changer le thème">🌙</button>
+        <button class="floating-btn" id="printBtn" title="Imprimer" aria-label="Imprimer le cours" onclick="window.print()">🖨️</button>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🎓 Master TEIP — Examen Final</div>
+            <h1>L'IA dans l'Éducation<br>et la Formation</h1>
+            <p>Cours complet — Comprendre, intégrer et maîtriser l'Intelligence Artificielle dans les pratiques pédagogiques.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-value">5</span>
+                    <span class="hero-stat-label">Chapitres</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">12+</span>
+                    <span class="hero-stat-label">Focus Examen</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">∞</span>
+                    <span class="hero-stat-label">Concepts Clés</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- SIDEBAR / TABLE OF CONTENTS -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-title">📚 Table des matières</div>
+            <ul class="toc-list">
+                <!-- Intro -->
+                <li class="toc-chapter expanded">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">📌</span> Introduction
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#intro">Vue d'ensemble</a></li>
+                    </ul>
+                </li>
+                <!-- Ch1 -->
+                <li class="toc-chapter">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">1</span> Comprendre l'IA
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#ch1-1">1.1 Fondements et applications</a></li>
+                        <li class="toc-sub-item"><a href="#ch1-focus-algo">Focus — Algorithme</a></li>
+                        <li class="toc-sub-item"><a href="#ch1-focus-types">Focus — Types d'IA</a></li>
+                        <li class="toc-sub-item"><a href="#ch1-2">1.2 Opportunités et limites</a></li>
+                        <li class="toc-sub-item"><a href="#ch1-focus-avantages">Focus — Avantages/Limites</a></li>
+                        <li class="toc-sub-item"><a href="#ch1-focus-biais">Focus — Biais algorithmiques</a></li>
+                    </ul>
+                </li>
+                <!-- Ch2 -->
+                <li class="toc-chapter">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">2</span> Éthique et responsabilité
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#ch2-1">2.1 Enjeux éthiques et juridiques</a></li>
+                        <li class="toc-sub-item"><a href="#ch2-focus-ethique">Focus — Principes éthiques</a></li>
+                        <li class="toc-sub-item"><a href="#ch2-case-study">Étude de cas : Fatima</a></li>
+                        <li class="toc-sub-item"><a href="#ch2-focus-mesures">Focus — Mesures enseignant</a></li>
+                        <li class="toc-sub-item"><a href="#ch2-focus-agentivite">Focus — Agentivité humaine</a></li>
+                        <li class="toc-sub-item"><a href="#ch2-focus-inegalites">Focus — Inégalités</a></li>
+                        <li class="toc-sub-item"><a href="#ch2-focus-responsable">Focus — Usage responsable</a></li>
+                    </ul>
+                </li>
+                <!-- Ch3 -->
+                <li class="toc-chapter">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">3</span> Fondamentaux techniques
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#ch3-1">3.1 Fonctionnement de l'IA</a></li>
+                        <li class="toc-sub-item"><a href="#ch3-focus-prompt">Focus — Méthode CRAFT</a></li>
+                        <li class="toc-sub-item"><a href="#ch3-2">3.2 Modèles et applications</a></li>
+                    </ul>
+                </li>
+                <!-- Ch4 -->
+                <li class="toc-chapter">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">4</span> Pratiques pédagogiques
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#ch4-1">4.1 Outils pour l'enseignement</a></li>
+                        <li class="toc-sub-item"><a href="#ch4-2">4.2 Conception d'activités</a></li>
+                        <li class="toc-sub-item"><a href="#ch4-descriptif">Descriptif pédagogique</a></li>
+                    </ul>
+                </li>
+                <!-- Ch5 -->
+                <li class="toc-chapter">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">5</span> Formation continue
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#ch5">Se former en continu</a></li>
+                        <li class="toc-sub-item"><a href="#ch5-cadres">Cadres de référence</a></li>
+                    </ul>
+                </li>
+                <!-- Conclusion -->
+                <li class="toc-chapter">
+                    <div class="toc-chapter-title" onclick="toggleChapter(this)">
+                        <span class="toc-chapter-num">🏁</span> Conclusion
+                    </div>
+                    <ul class="toc-sub-list">
+                        <li class="toc-sub-item"><a href="#conclusion">Synthèse finale</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="mainContent">
+
+            <!-- ===== INTRODUCTION ===== -->
+            <section class="intro-section animate-on-scroll" id="intro">
+                <h2>📘 Introduction</h2>
+                <p>L'<strong>IA (Intelligence Artificielle)</strong> transforme profondément l'éducation et la formation. Elle offre de nouvelles façons d'enseigner, d'apprendre et d'évaluer.</p>
+                <p>L'enseignant ne devient pas obsolète — il devient un <strong>médiateur éclairé</strong> entre l'IA et l'apprenant.</p>
+                <div class="intro-question">
+                    Comment intégrer l'IA de façon efficace, éthique et pédagogiquement fondée ?
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 CHAPITRE 1
+                 ═══════════════════════════════════════════════ -->
+            <section class="chapter-section" id="ch1">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapitre 1</div>
+                    <h2 class="chapter-title">Comprendre l'IA au service de l'éducation et la formation</h2>
+                </div>
+
+                <div class="content" id="ch1-1">
+                    <h3 class="sub-section-title">1.1 — Comprendre les fondements de l'IA et ses principales applications</h3>
+
+                    <h4 class="section-h3">Qu'est-ce que l'IA ?</h4>
+                    <p>L'IA est la capacité d'une machine à <strong>simuler des comportements intelligents</strong> : comprendre, raisonner, apprendre, décider. Elle repose sur des <strong>données massives (data)</strong> et des modèles mathématiques appelés <strong>algorithmes</strong>.</p>
+
+                    <!-- FOCUS EXAMEN — Algorithme -->
+                    <div class="focus-exam animate-on-scroll" id="ch1-focus-algo">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les concepts de l'algorithme</div>
+                        <p><strong>Un algorithme</strong> = une suite d'instructions précises que la machine suit pour résoudre un problème.</p>
+                        <p>🍳 C'est comme une <strong>recette de cuisine</strong> : des étapes dans un ordre précis → un résultat.</p>
+                        <p>En IA, l'algorithme apprend à partir de données (ex. : il analyse des milliers de copies pour prédire une note).</p>
+
+                        <div class="key-points">
+                            <div class="key-point">
+                                <div class="key-point-num">1</div>
+                                <div class="key-point-text"><strong>Données d'entrée</strong> → ce qu'on donne à l'algorithme.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">2</div>
+                                <div class="key-point-text"><strong>Traitement</strong> → l'algorithme analyse et calcule.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">3</div>
+                                <div class="key-point-text"><strong>Résultat/sortie</strong> → la décision ou prédiction produite.</div>
+                            </div>
+                        </div>
+
+                        <div class="callout callout-warning" style="margin-top: 16px">
+                            <div class="callout-title">⚠️ Important</div>
+                            <p>L'algorithme n'est pas neutre : il reflète les choix de ses concepteurs (biais possibles).</p>
+                        </div>
+                    </div>
+
+                    <!-- FOCUS EXAMEN — Types d'IA -->
+                    <div class="focus-exam animate-on-scroll" id="ch1-focus-types">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les différents types d'IA</div>
+
+                        <div class="concept-grid">
+                            <div class="concept-card">
+                                <div class="concept-card-icon">🎯</div>
+                                <h4>IA étroite (faible)</h4>
+                                <p>Spécialisée dans une seule tâche. Ex. : ChatGPT, Netflix, reconnaissance vocale.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-card-icon">🧠</div>
+                                <h4>IA générale (forte)</h4>
+                                <p>Hypothétique — une IA qui ferait tout comme l'humain. <strong>N'existe pas encore.</strong></p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-card-icon">✨</div>
+                                <h4>IA générative</h4>
+                                <p>Crée du contenu nouveau (texte, image, son, vidéo). Ex. : ChatGPT, DALL-E, Midjourney.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-card-icon">📊</div>
+                                <h4>Machine Learning (ML)</h4>
+                                <p>L'IA apprend par elle-même à partir de données, sans être explicitement programmée.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-card-icon">🔬</div>
+                                <h4>Deep Learning</h4>
+                                <p>Sous-catégorie du ML, basée sur des réseaux de neurones artificiels. Plus puissant, mais moins explicable.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-card-icon">🔗</div>
+                                <h4>IA symbolique</h4>
+                                <p>Basée sur des règles logiques définies par des humains (approche plus ancienne).</p>
+                            </div>
+                        </div>
+
+                        <h4 class="section-h3" style="margin-top: 24px; color: var(--focus-exam-text);">Applications en éducation</h4>
+                        <ul>
+                            <li><strong>Tuteurs intelligents</strong> (ex. : Khan Academy AI, Khanmigo)</li>
+                            <li><strong>Correction automatique</strong> et feedback instantané</li>
+                            <li><strong>Génération de contenus</strong> pédagogiques (exercices, quiz, fiches)</li>
+                            <li><strong>Personnalisation</strong> des parcours d'apprentissage</li>
+                            <li><strong>Traduction et accessibilité</strong> (sous-titres automatiques, synthèse vocale)</li>
+                            <li><strong>Détection du décrochage scolaire</strong> (analyse comportementale)</li>
+                            <li><strong>Chatbots pédagogiques</strong> pour répondre aux questions des apprenants</li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 1.2 -->
+                    <h3 class="sub-section-title" id="ch1-2">1.2 — Opportunités et limites de l'usage de l'IA</h3>
+
+                    <!-- FOCUS EXAMEN — Avantages et Limites -->
+                    <div class="focus-exam animate-on-scroll" id="ch1-focus-avantages">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les avantages et les limites de l'IA</div>
+
+                        <div class="comparison-grid">
+                            <div class="comparison-box pros">
+                                <h4>✅ Avantages / Opportunités</h4>
+                                <ul>
+                                    <li><strong>Personnalisation :</strong> adapter le rythme et le contenu à chaque apprenant</li>
+                                    <li><strong>Accessibilité :</strong> aide les apprenants en situation de handicap</li>
+                                    <li><strong>Gain de temps</strong> pour l'enseignant : correction, génération, planification</li>
+                                    <li><strong>Feedback immédiat :</strong> l'apprenant sait tout de suite où il en est</li>
+                                    <li><strong>Disponibilité 24h/24 :</strong> l'IA ne se fatigue pas</li>
+                                    <li><strong>Engagement :</strong> formats interactifs et gamifiés</li>
+                                    <li><strong>Analyse des données :</strong> repérer les difficultés</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-box cons">
+                                <h4>❌ Limites / Risques</h4>
+                                <ul>
+                                    <li><strong>Hallucinations :</strong> invente des informations fausses</li>
+                                    <li><strong>Biais algorithmiques :</strong> données biaisées → résultats biaisés</li>
+                                    <li><strong>Dépendance :</strong> l'apprenant ne réfléchit plus par lui-même</li>
+                                    <li><strong>Manque de sens critique :</strong> l'IA prédit, ne comprend pas</li>
+                                    <li><strong>Coût et inégalités :</strong> accès inégal aux outils</li>
+                                    <li><strong>Opacité (boîte noire) :</strong> résultats inexplicables</li>
+                                    <li><strong>Protection des données :</strong> risques sur la confidentialité</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FOCUS EXAMEN — Biais -->
+                    <div class="focus-exam animate-on-scroll" id="ch1-focus-biais">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les biais algorithmiques — C'est quoi ?</div>
+                        <p><strong>Un biais</strong> = une erreur systématique dans les résultats de l'IA, due à des données déséquilibrées ou des choix de conception.</p>
+                        <p>En clair : si on entraîne une IA surtout avec des données sur des hommes blancs occidentaux, elle sera moins fiable pour les femmes, les personnes racisées ou les cultures non-occidentales.</p>
+
+                        <div class="callout callout-danger" style="margin: 16px 0;">
+                            <div class="callout-title">⚡ Exemple concret</div>
+                            <p>Une IA de recrutement entraînée sur des CV d'hommes va <strong>favoriser les candidatures masculines</strong> → discrimination involontaire.</p>
+                        </div>
+
+                        <div class="callout callout-info" style="margin: 16px 0;">
+                            <div class="callout-title">🎓 Exemple éducatif</div>
+                            <p>Un outil d'IA qui reconnaît mal les accents étrangers <strong>pénalise les apprenants allophones</strong>.</p>
+                        </div>
+
+                        <p><strong>Les biais viennent de :</strong></p>
+                        <ul>
+                            <li>Les <strong>données d'entraînement</strong> (si incomplètes ou non représentatives)</li>
+                            <li>Les <strong>choix des concepteurs</strong> (inconscients ou non)</li>
+                            <li>Le <strong>contexte culturel dominant</strong> dans lequel l'IA a été développée</li>
+                        </ul>
+
+                        <div class="callout callout-warning" style="margin-top: 16px;">
+                            <div class="callout-title">⚠️ À retenir</div>
+                            <p>L'IA ne biaise pas volontairement — elle <strong>reproduit et amplifie</strong> les inégalités déjà présentes dans les données humaines.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 CHAPITRE 2
+                 ═══════════════════════════════════════════════ -->
+            <section class="chapter-section" id="ch2">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapitre 2</div>
+                    <h2 class="chapter-title">Enseigner avec éthique et responsabilité</h2>
+                </div>
+
+                <div class="content" id="ch2-1">
+                    <h3 class="sub-section-title">2.1 — Enjeux éthiques, juridiques et pédagogiques</h3>
+
+                    <div class="concept-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="concept-card">
+                            <div class="concept-card-icon">⚖️</div>
+                            <h4>Enjeux éthiques</h4>
+                            <p>Respecter la dignité humaine, la vie privée et l'équité. L'enseignant reste le responsable pédagogique. <strong>L'humain reste responsable</strong> si l'IA commet une erreur.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">📜</div>
+                            <h4>Enjeux juridiques</h4>
+                            <p><strong>RGPD</strong> en Europe. Interdit de collecter des données de mineurs sans consentement. <strong>Droits d'auteur</strong> : questions de propriété intellectuelle.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">🎓</div>
+                            <h4>Enjeux pédagogiques</h4>
+                            <p>Risque de réduire l'apprentissage à la production d'outputs. Enseigner <strong>sur</strong> l'IA et <strong>avec</strong> l'IA. L'IA ne doit pas remplacer la réflexion.</p>
+                        </div>
+                    </div>
+
+                    <!-- FOCUS — Principes éthiques -->
+                    <div class="focus-exam animate-on-scroll" id="ch2-focus-ethique">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les principes éthiques de l'IA et son usage éthique</div>
+                        <p><em>Référence : UNESCO, Commission Européenne</em></p>
+
+                        <div class="key-points">
+                            <div class="key-point">
+                                <div class="key-point-num">🔍</div>
+                                <div class="key-point-text"><strong>Transparence</strong> — On doit pouvoir expliquer comment l'IA prend ses décisions.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">⚖️</div>
+                                <div class="key-point-text"><strong>Équité</strong> — L'IA ne doit pas discriminer (genre, origine, handicap…).</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">👤</div>
+                                <div class="key-point-text"><strong>Responsabilité</strong> — Un humain reste toujours responsable des décisions avec l'IA.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">🛡️</div>
+                                <div class="key-point-text"><strong>Non-malfaisance</strong> — L'IA ne doit pas nuire.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">💚</div>
+                                <div class="key-point-text"><strong>Bienfaisance</strong> — L'IA doit servir le bien commun.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">🔒</div>
+                                <div class="key-point-text"><strong>Respect de la vie privée</strong> — Protéger les données personnelles.</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">🌱</div>
+                                <div class="key-point-text"><strong>Durabilité</strong> — Penser à l'impact environnemental (énergie).</div>
+                            </div>
+                            <div class="key-point">
+                                <div class="key-point-num">🤝</div>
+                                <div class="key-point-text"><strong>Inclusion</strong> — Accessible à tous, sans créer de nouvelles inégalités.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CASE STUDY - Fatima -->
+                    <div class="focus-exam animate-on-scroll" id="ch2-case-study">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen — Étude de cas</span>
+                        </div>
+                        <div class="focus-exam-title">Risques liés à la vulgarisation personnelle (données privées)</div>
+
+                        <div class="case-study">
+                            <div class="case-study-header">
+                                <div class="case-study-icon">👩‍🏫</div>
+                                <div>
+                                    <div class="case-study-badge">Cas concret</div>
+                                    <div class="case-study-title">Le cas de Fatima, enseignante</div>
+                                </div>
+                            </div>
+                            <p>Fatima utilise un <strong>chatbot IA gratuit</strong> pour préparer ses cours. Pour obtenir une aide personnalisée, elle y colle des informations sur ses élèves : leurs <strong>noms</strong>, leurs <strong>difficultés</strong>, leurs <strong>résultats scolaires</strong>. Elle ne réalise pas que ces données sont stockées sur des serveurs étrangers et potentiellement utilisées pour entraîner le modèle.</p>
+                        </div>
+
+                        <div class="callout callout-danger" style="margin: 16px 0;">
+                            <div class="callout-title">🚨 Risques identifiés</div>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Violation du <strong>RGPD</strong> : données d'élèves mineurs partagées sans consentement</li>
+                                <li>Perte de contrôle sur qui accède à ces données</li>
+                                <li>Profilage involontaire des apprenants</li>
+                                <li>Responsabilité légale pour l'enseignante et l'établissement</li>
+                            </ul>
+                        </div>
+
+                        <div class="callout callout-success" style="margin: 16px 0;">
+                            <div class="callout-title">✅ Ce qu'il faut faire à la place</div>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Ne jamais saisir de <strong>données identifiantes</strong> dans un outil non certifié</li>
+                                <li>Utiliser des outils <strong>conformes RGPD</strong></li>
+                                <li><strong>Anonymiser</strong> les données avant tout partage</li>
+                                <li>Informer les familles et obtenir leur <strong>consentement</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FOCUS — Mesures enseignant -->
+                    <div class="focus-exam animate-on-scroll" id="ch2-focus-mesures">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les mesures éthiques que l'enseignant doit prendre en considération</div>
+                        <div class="key-points">
+                            <div class="key-point"><div class="key-point-num">1</div><div class="key-point-text"><strong>Vérifier la conformité</strong> des outils IA utilisés (RGPD, charte de l'établissement).</div></div>
+                            <div class="key-point"><div class="key-point-num">2</div><div class="key-point-text"><strong>Ne pas partager</strong> de données personnelles d'élèves dans les outils IA.</div></div>
+                            <div class="key-point"><div class="key-point-num">3</div><div class="key-point-text"><strong>Expliquer</strong> aux apprenants comment fonctionne l'IA et ses limites.</div></div>
+                            <div class="key-point"><div class="key-point-num">4</div><div class="key-point-text"><strong>Garder son jugement critique</strong> : ne pas accepter les outputs sans vérification.</div></div>
+                            <div class="key-point"><div class="key-point-num">5</div><div class="key-point-text"><strong>Éviter de noter</strong> uniquement sur des productions générées par l'IA.</div></div>
+                            <div class="key-point"><div class="key-point-num">6</div><div class="key-point-text"><strong>Assurer l'équité</strong> : tous les apprenants doivent avoir accès aux mêmes outils.</div></div>
+                            <div class="key-point"><div class="key-point-num">7</div><div class="key-point-text"><strong>Déclarer l'utilisation</strong> de l'IA dans ses pratiques (transparence).</div></div>
+                            <div class="key-point"><div class="key-point-num">8</div><div class="key-point-text"><strong>Rester le médiateur</strong> : l'enseignant prend la décision finale, pas l'IA.</div></div>
+                        </div>
+                    </div>
+
+                    <!-- FOCUS — Agentivité -->
+                    <div class="focus-exam animate-on-scroll" id="ch2-focus-agentivite">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">L'agentivité humaine (Human Agency)</div>
+                        <p><strong>L'agentivité</strong> = la capacité d'un individu à agir de façon autonome, à faire des choix et à contrôler ses propres actions.</p>
+                        <ul>
+                            <li><strong>En contexte IA :</strong> utiliser l'IA sans en devenir dépendant — être l'acteur, pas le spectateur.</li>
+                            <li><strong>Pour l'enseignant :</strong> garder le contrôle pédagogique, ne pas déléguer sa responsabilité à la machine.</li>
+                            <li><strong>Pour l'apprenant :</strong> apprendre à utiliser l'IA comme un outil, tout en développant sa propre pensée critique.</li>
+                        </ul>
+                        <div class="callout callout-danger" style="margin-top: 16px;">
+                            <div class="callout-title">⚠️ Menace principale</div>
+                            <p>Si l'IA prend toutes les décisions, l'humain perd son autonomie → risque de <strong>déshumanisation</strong>.</p>
+                        </div>
+                        <div class="callout callout-success" style="margin-top: 12px;">
+                            <div class="callout-title">🎯 Objectif</div>
+                            <p>Maintenir une <strong>IA centrée sur l'humain</strong> (human-centered AI) où l'IA augmente les capacités humaines sans les remplacer.</p>
+                        </div>
+                    </div>
+
+                    <!-- FOCUS — Inégalités -->
+                    <div class="focus-exam animate-on-scroll" id="ch2-focus-inegalites">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les inégalités potentielles que l'IA peut générer</div>
+                        <ul>
+                            <li><strong>Fracture numérique :</strong> les apprenants sans accès à Internet ou aux outils modernes sont désavantagés.</li>
+                            <li><strong>Inégalités géographiques :</strong> l'IA est principalement développée dans des pays riches, en anglais.</li>
+                            <li><strong>Biais de genre et culturels :</strong> les algorithmes entraînés sur des données non représentatives reproduisent des discriminations.</li>
+                            <li><strong>Inégalités économiques :</strong> les meilleures IA (payantes) sont réservées à ceux qui peuvent se les offrir.</li>
+                            <li><strong>Inégalités d'alphabétisation numérique :</strong> ceux qui savent bien <em>prompter</em> obtiennent de meilleurs résultats.</li>
+                            <li><strong>Risque de creuser les écarts :</strong> les apprenants déjà favorisés bénéficient davantage de l'IA.</li>
+                        </ul>
+                    </div>
+
+                    <!-- FOCUS — Usage responsable -->
+                    <div class="focus-exam animate-on-scroll" id="ch2-focus-responsable">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Comment utiliser l'IA d'une manière responsable et éthique</div>
+                        <div class="key-points">
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Vérifier toujours</strong> les informations produites par l'IA (ne pas faire confiance aveuglément).</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Citer l'usage</strong> de l'IA dans ses productions (transparence).</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Choisir des outils</strong> conformes à la législation et à la charte de l'établissement.</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Protéger les données</strong> personnelles : ne jamais saisir d'informations sensibles.</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Former les apprenants</strong> à un usage critique et éclairé de l'IA.</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Questionner les biais</strong> potentiels dans les réponses de l'IA.</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Préserver l'autonomie</strong> de l'apprenant : l'IA est une aide, pas un substitut.</div></div>
+                            <div class="key-point"><div class="key-point-num">✓</div><div class="key-point-text"><strong>Respecter les droits d'auteur</strong> : le contenu généré par l'IA soulève des questions de propriété.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 CHAPITRE 3
+                 ═══════════════════════════════════════════════ -->
+            <section class="chapter-section" id="ch3">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapitre 3</div>
+                    <h2 class="chapter-title">Maîtriser les fondamentaux techniques de l'IA</h2>
+                </div>
+
+                <div class="content" id="ch3-1">
+                    <h3 class="sub-section-title">3.1 — Fonctionnement, types d'IA, limitations, prompts</h3>
+
+                    <h4 class="section-h3">Comment fonctionne une IA générative (ex. : ChatGPT) ?</h4>
+                    <ul>
+                        <li>Elle est entraînée sur des <strong>milliards de textes</strong> issus d'Internet.</li>
+                        <li>Elle <strong>prédit le mot le plus probable</strong> qui vient après chaque mot → c'est un <strong>modèle de langage (LLM)</strong>.</li>
+                        <li>Elle ne « comprend » pas comme un humain : elle <strong>calcule des probabilités</strong>.</li>
+                        <li>Plus les données d'entraînement sont riches et diversifiées, meilleure est l'IA.</li>
+                    </ul>
+
+                    <h4 class="section-h3">Limitations techniques importantes</h4>
+                    <ul>
+                        <li><strong>Date de coupure (cutoff date) :</strong> l'IA ne connaît pas les événements récents.</li>
+                        <li><strong>Hallucinations :</strong> elle peut inventer des faits, des références, des auteurs.</li>
+                        <li><strong>Manque de mémoire :</strong> elle oublie le contexte entre les sessions.</li>
+                        <li><strong>Sensibilité au prompt :</strong> un mauvais prompt = une mauvaise réponse.</li>
+                        <li><strong>Pas d'émotions ni de conscience :</strong> elle simule, elle ne ressent pas.</li>
+                    </ul>
+
+                    <!-- FOCUS — CRAFT -->
+                    <div class="focus-exam animate-on-scroll" id="ch3-focus-prompt">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Les méthodes de formulation de prompt — Méthode CRAFT</div>
+                        <p><strong>Un prompt</strong> = la question ou instruction qu'on donne à l'IA. La qualité du prompt détermine directement la qualité de la réponse.</p>
+
+                        <table class="styled-table" style="margin: 20px 0;">
+                            <thead>
+                                <tr>
+                                    <th>Lettre</th>
+                                    <th>Signification</th>
+                                    <th>Exemple concret</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>C</strong></td>
+                                    <td>Context (Contexte)</td>
+                                    <td>« Je suis enseignant en lycée professionnel… »</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>R</strong></td>
+                                    <td>Role (Rôle)</td>
+                                    <td>« Agis en tant qu'expert en pédagogie… »</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>A</strong></td>
+                                    <td>Action (Action)</td>
+                                    <td>« Rédige une activité d'apprentissage… »</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>F</strong></td>
+                                    <td>Format (Format)</td>
+                                    <td>« Sous forme de tableau, en 5 étapes… »</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>T</strong></td>
+                                    <td>Target (Cible)</td>
+                                    <td>« Pour des apprenants de niveau B1… »</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="prompt-box">
+                            « Je suis formateur en centre de formation professionnelle <strong>(C)</strong>. Agis en tant qu'expert en ingénierie pédagogique <strong>(R)</strong>. Crée un quiz de 5 questions <strong>(A)</strong> sous forme de QCM avec les bonnes réponses en gras <strong>(F)</strong> pour évaluer la compréhension du RGPD chez des adultes débutants <strong>(T)</strong>. »
+                        </div>
+
+                        <h4 class="section-h3" style="color: var(--focus-exam-text);">Autres méthodes à connaître</h4>
+                        <ul>
+                            <li><strong>RACI</strong> — Rôle, Action, Contexte, Instructions</li>
+                            <li><strong>Zero-shot</strong> — Poser une question directe sans exemple.</li>
+                            <li><strong>Few-shot</strong> — Donner des exemples à l'IA pour qu'elle comprenne ce qu'on attend.</li>
+                            <li><strong>Chain of Thought</strong> — Demander à l'IA de raisonner étape par étape.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3.2 -->
+                    <h3 class="sub-section-title" id="ch3-2">3.2 — Fondements et applications</h3>
+
+                    <h4 class="section-h3">Grands modèles à connaître</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Modèle</th>
+                                <th>Éditeur</th>
+                                <th>Particularité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>ChatGPT (GPT-4o)</td><td>OpenAI</td><td>Modèle généraliste le plus connu</td></tr>
+                            <tr><td>Claude</td><td>Anthropic</td><td>Orienté sécurité et éthique</td></tr>
+                            <tr><td>Gemini</td><td>Google</td><td>Intégré à l'écosystème Google</td></tr>
+                            <tr><td>Mistral</td><td>Mistral AI (🇫🇷)</td><td>Modèle open source européen</td></tr>
+                            <tr><td>LLaMA</td><td>Meta</td><td>Open source</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4 class="section-h3">Applications concrètes en formation</h4>
+                    <div class="concept-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="concept-card">
+                            <div class="concept-card-icon">📋</div>
+                            <h4>Scénarios pédagogiques</h4>
+                            <p>Générer des séquences de cours structurées et différenciées.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">📝</div>
+                            <h4>Évaluations</h4>
+                            <p>Créer des évaluations différenciées, résumés de cours, quiz variés.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">🗣️</div>
+                            <h4>Dialogues linguistiques</h4>
+                            <p>Simuler des conversations pour l'apprentissage des langues.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">🎨</div>
+                            <h4>Images (DALL-E)</h4>
+                            <p>Générer des illustrations pour enrichir les supports de cours.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">📊</div>
+                            <h4>Présentations</h4>
+                            <p>Créer automatiquement des slides avec Gamma ou SlidesAI.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">📄</div>
+                            <h4>Résumés</h4>
+                            <p>Produire des synthèses et fiches de révision adaptées.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 CHAPITRE 4
+                 ═══════════════════════════════════════════════ -->
+            <section class="chapter-section" id="ch4">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapitre 4</div>
+                    <h2 class="chapter-title">Intégrer l'IA dans ses pratiques pédagogiques</h2>
+                </div>
+
+                <div class="content" id="ch4-1">
+                    <h3 class="sub-section-title">4.1 — Mobiliser les outils d'IA pour l'enseignement, l'apprentissage et l'évaluation</h3>
+
+                    <div class="concept-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="concept-card">
+                            <div class="concept-card-icon">👨‍🏫</div>
+                            <h4>Pour l'enseignant</h4>
+                            <p>
+                                • Préparer des séquences plus rapidement<br>
+                                • Générer des ressources différenciées<br>
+                                • Analyser les données d'apprentissage<br>
+                                • Créer des grilles d'évaluation
+                            </p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">👩‍🎓</div>
+                            <h4>Pour l'apprenant</h4>
+                            <p>
+                                • Utiliser l'IA comme tuteur<br>
+                                • Réviser avec des quiz auto-générés<br>
+                                • Recevoir un feedback personnalisé<br>
+                                • Développer des projets créatifs
+                            </p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="concept-card-icon">✅</div>
+                            <h4>Pour l'évaluation</h4>
+                            <p>
+                                • <strong>Formative :</strong> feedback instantané<br>
+                                • <strong>Sommative :</strong> sujets variés anti-triche<br>
+                                • <strong>Par compétences :</strong> alignement tâches-compétences
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="callout callout-info" style="margin-top: 20px;">
+                        <div class="callout-title">🤔 Défi central</div>
+                        <p>Comment <strong>évaluer de manière authentique</strong> quand l'IA peut tout produire ? → Favoriser les tâches complexes, orales, ou ancrées dans un contexte réel.</p>
+                    </div>
+
+                    <!-- 4.2 -->
+                    <h3 class="sub-section-title" id="ch4-2">4.2 — Conception d'activités, ressources, évaluation, inclusion</h3>
+
+                    <h4 class="section-h3">Conception d'activités avec l'IA</h4>
+                    <ul>
+                        <li>Utiliser les modèles <strong>ADDIE</strong> ou <strong>SAM</strong> pour structurer la conception.</li>
+                        <li>L'IA peut générer un premier brouillon → l'enseignant ajuste et valide.</li>
+                        <li>Penser à la <strong>taxonomie de Bloom</strong> pour cibler le bon niveau cognitif.</li>
+                    </ul>
+
+                    <h4 class="section-h3">Inclusion et accessibilité</h4>
+                    <ul>
+                        <li>L'IA peut générer des <strong>textes simplifiés</strong> pour apprenants en difficulté.</li>
+                        <li><strong>Synthèse vocale, sous-titrage automatique, traduction</strong> → aide aux apprenants allophones ou malvoyants.</li>
+                        <li>Adapter le contenu selon le principe <strong>UDL</strong> (Universal Design for Learning).</li>
+                    </ul>
+
+                    <h4 class="section-h3">Pédagogie de l'IA</h4>
+                    <ul>
+                        <li><strong>Enseigner sur l'IA</strong> = faire comprendre son fonctionnement, ses biais, ses limites.</li>
+                        <li><strong>Enseigner avec l'IA</strong> = l'intégrer comme outil pédagogique.</li>
+                        <li>Former à la <strong>littératie IA</strong> (AI literacy) : compétence essentielle du XXIe siècle.</li>
+                    </ul>
+
+                    <!-- FOCUS — Descriptif pédagogique -->
+                    <div class="focus-exam animate-on-scroll" id="ch4-descriptif">
+                        <div class="focus-exam-header">
+                            <div class="focus-exam-icon">📝</div>
+                            <span class="focus-exam-label">Focus Examen</span>
+                        </div>
+                        <div class="focus-exam-title">Rédiger un descriptif pédagogique — Simulation d'examen</div>
+                        <p><em>Compétence choisie : Formuler un prompt efficace avec la méthode CRAFT (Chapitre 3)</em></p>
+
+                        <div class="descriptif-block">
+                            <div class="descriptif-top-label">📄 Descriptif pédagogique complet</div>
+
+                            <h4>Compétences visées</h4>
+                            <ul>
+                                <li>Maîtriser la méthode CRAFT pour formuler des prompts de qualité.</li>
+                                <li>Évaluer la pertinence d'une réponse générée par l'IA.</li>
+                                <li>Adopter une posture critique face aux outils d'IA générative.</li>
+                            </ul>
+
+                            <h4>Objectif d'apprentissage</h4>
+                            <p>À l'issue de l'activité, l'apprenant sera capable de rédiger un prompt structuré selon la méthode CRAFT afin d'obtenir une ressource pédagogique adaptée à un public cible donné.</p>
+
+                            <h4>Contexte</h4>
+                            <p>Dans le cadre de sa formation en Master TEIP, l'apprenant est amené à concevoir des ressources pédagogiques numériques. Il doit apprendre à utiliser l'IA comme outil de conception tout en gardant son esprit critique.</p>
+
+                            <h4>Tâche</h4>
+                            <p>L'apprenant doit rédiger un prompt complet selon la méthode CRAFT pour demander à une IA de générer une activité pédagogique sur le thème du RGPD, destinée à des apprenants adultes en formation professionnelle. Il soumet ensuite le prompt, analyse la réponse obtenue et identifie au moins deux améliorations possibles.</p>
+
+                            <h4>Consignes</h4>
+                            <ol>
+                                <li>Rédiger le prompt en appliquant les 5 composantes CRAFT (C, R, A, F, T).</li>
+                                <li>Tester le prompt sur un outil IA au choix (ChatGPT, Claude, Gemini…).</li>
+                                <li>Analyser la réponse : est-elle adaptée au public ? complète ? sans biais ?</li>
+                                <li>Proposer une version améliorée du prompt avec justification.</li>
+                                <li>Rédiger une courte réflexion (10 lignes) sur les limites observées.</li>
+                            </ol>
+
+                            <h4>Ressources</h4>
+                            <ul>
+                                <li>Cours TEIP — Chapitre 3 : Fondamentaux techniques de l'IA.</li>
+                                <li>Méthode CRAFT (fiche de référence fournie).</li>
+                                <li>Accès libre à un outil d'IA générative.</li>
+                                <li>Grille d'évaluation critique de prompts (fournie par l'enseignant).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 CHAPITRE 5
+                 ═══════════════════════════════════════════════ -->
+            <section class="chapter-section" id="ch5">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapitre 5</div>
+                    <h2 class="chapter-title">Se former en continu à l'IA</h2>
+                </div>
+
+                <div class="content">
+                    <h3 class="sub-section-title">Développement professionnel, formation, collaboration, leadership</h3>
+
+                    <h4 class="section-h3">Pourquoi se former en continu ?</h4>
+                    <ul>
+                        <li>L'IA évolue très rapidement : un outil appris aujourd'hui peut être <strong>obsolète dans 6 mois</strong>.</li>
+                        <li>Le rôle de l'enseignant doit évoluer : de <strong>transmetteur de savoirs</strong> à <strong>architecte d'apprentissage</strong>.</li>
+                    </ul>
+
+                    <h4 class="section-h3">Comment se former ?</h4>
+                    <div class="key-points">
+                        <div class="key-point"><div class="key-point-num">📡</div><div class="key-point-text"><strong>Veille technologique :</strong> suivre des blogs, podcasts, newsletters (The Batch, NextIA, Educpros).</div></div>
+                        <div class="key-point"><div class="key-point-num">👥</div><div class="key-point-text"><strong>Communautés de pratique :</strong> partager avec d'autres enseignants, groupes en ligne.</div></div>
+                        <div class="key-point"><div class="key-point-num">🎓</div><div class="key-point-text"><strong>Formations certifiantes :</strong> Coursera, edX, FUN-MOOC (ex. : « IA pour tous » d'Andrew Ng).</div></div>
+                        <div class="key-point"><div class="key-point-num">🧪</div><div class="key-point-text"><strong>Expérimentation :</strong> tester régulièrement de nouveaux outils dans un cadre sécurisé.</div></div>
+                        <div class="key-point"><div class="key-point-num">🔄</div><div class="key-point-text"><strong>Réflexivité :</strong> analyser ses propres pratiques avec et sans IA.</div></div>
+                    </div>
+
+                    <h4 class="section-h3">Collaboration</h4>
+                    <ul>
+                        <li>Partager ses ressources et prompts avec ses collègues.</li>
+                        <li>Co-construire des projets interdisciplinaires intégrant l'IA.</li>
+                        <li>Collaborer avec les équipes informatiques et de direction pour choisir des outils conformes.</li>
+                    </ul>
+
+                    <h4 class="section-h3">Leadership pédagogique</h4>
+                    <ul>
+                        <li>L'enseignant formé à l'IA devient <strong>une ressource</strong> pour son établissement.</li>
+                        <li>Il peut <strong>accompagner ses pairs</strong> dans la prise en main des outils.</li>
+                        <li>Il participe à la définition d'une <strong>politique d'établissement</strong> sur l'IA.</li>
+                        <li>Il incarne une posture d'<strong>apprenant permanent</strong> (lifelong learner).</li>
+                    </ul>
+
+                    <h4 class="section-h3" id="ch5-cadres">Cadres de référence à connaître</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Cadre</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DigComp</td>
+                                <td>Cadre européen des compétences numériques</td>
+                            </tr>
+                            <tr>
+                                <td>DigCompEdu</td>
+                                <td>Version spécifique pour les enseignants (6 domaines de compétences numériques pédagogiques)</td>
+                            </tr>
+                            <tr>
+                                <td>Cadre UNESCO (2023)</td>
+                                <td>Cadre de l'UNESCO sur l'IA dans l'éducation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 CONCLUSION
+                 ═══════════════════════════════════════════════ -->
+            <section class="conclusion-section animate-on-scroll" id="conclusion">
+                <h2>🏁 Conclusion</h2>
+                <p>L'IA est un outil puissant qui peut transformer positivement l'éducation — mais <strong>seulement si elle est utilisée avec discernement</strong>.</p>
+                <p>L'enseignant reste irremplaçable : sa capacité à créer du lien, à comprendre l'humain, à s'adapter, à motiver — l'IA ne peut pas l'imiter vraiment.</p>
+
+                <p style="margin-top: 24px; font-weight: 700; color: var(--text-primary);">L'intégration réussie de l'IA repose sur 3 piliers :</p>
+
+                <div class="conclusion-pillars">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">⚙️</div>
+                        <div class="pillar-title">Compétence technique</div>
+                        <div class="pillar-text">Savoir utiliser les outils</div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🛡️</div>
+                        <div class="pillar-title">Posture éthique</div>
+                        <div class="pillar-text">Protéger les apprenants et respecter leurs droits</div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🧩</div>
+                        <div class="pillar-title">Agilité pédagogique</div>
+                        <div class="pillar-text">Adapter en permanence ses pratiques</div>
+                    </div>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 24px;">
+                    <div class="callout-title">💡 Message clé</div>
+                    <p>Le défi majeur n'est pas technologique, il est <strong>humain et pédagogique</strong> : former des individus capables de penser, créer et décider dans un monde où l'IA est omniprésente.</p>
+                </div>
+
+                <div class="exam-reminder">
+                    <h3>🎯 Rappel stratégique pour l'examen</h3>
+                    <p>Les <strong>FOCUS EXAMEN</strong> sont les points les plus susceptibles d'être évalués.<br>Assure-toi de pouvoir expliquer chaque concept avec un <strong>exemple concret</strong>. Bonne chance ! 🍀</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Retour en haut" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script>
+        // ═══════════════════════════════════════════════════
+        // THEME TOGGLE
+        // ═══════════════════════════════════════════════════
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check saved preference
+        const savedTheme = localStorage.getItem('course-theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('course-theme', next);
+            themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+
+        // ═══════════════════════════════════════════════════
+        // MOBILE SIDEBAR
+        // ═══════════════════════════════════════════════════
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        });
+
+        // Close sidebar on link click (mobile)
+        sidebar.querySelectorAll('.toc-sub-item a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('show');
+                }
+            });
+        });
+
+        // ═══════════════════════════════════════════════════
+        // TOC TOGGLE
+        // ═══════════════════════════════════════════════════
+        function toggleChapter(el) {
+            const chapter = el.parentElement;
+            chapter.classList.toggle('expanded');
+        }
+
+        // ═══════════════════════════════════════════════════
+        // PROGRESS BAR
+        // ═══════════════════════════════════════════════════
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // ═══════════════════════════════════════════════════
+        // SCROLL TO TOP BUTTON
+        // ═══════════════════════════════════════════════════
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════
+        // ANIMATE ON SCROLL
+        // ═══════════════════════════════════════════════════
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ═══════════════════════════════════════════════════
+        // ACTIVE TOC HIGHLIGHT
+        // ═══════════════════════════════════════════════════
+        const sections = document.querySelectorAll('[id]');
+        const tocLinks = document.querySelectorAll('.toc-sub-item a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                    // Auto-expand parent chapter
+                    const chapter = link.closest('.toc-chapter');
+                    if (chapter && !chapter.classList.contains('expanded')) {
+                        chapter.classList.add('expanded');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
